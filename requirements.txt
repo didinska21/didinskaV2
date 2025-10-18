@@ -1,0 +1,5 @@
+web3
+mnemonic
+eth-account
+python-dotenv
+requests
