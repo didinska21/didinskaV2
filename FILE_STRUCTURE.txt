@@ -1,0 +1,411 @@
+📁 DIDINSKA WALLET HUNTER v4.0 - Complete File Structure
+═══════════════════════════════════════════════════════════
+
+didinska/
+│
+├── 📄 main.py                          # Main menu entry point
+├── 📄 wallet_gen_random.py             # Mode 1: Random wallet generator
+├── 📄 wallet_gen_phrase.py             # Mode 2: Phrase finder with wildcards
+│
+├── 📁 utils/                           # Utilities package
+│   ├── 📄 __init__.py                  # Package initialization
+│   ├── 📄 colors.py                    # ANSI color codes for terminal
+│   ├── 📄 ui.py                        # UI components (boxes, loaders, progress bars)
+│   ├── 📄 telegram.py                  # Telegram bot integration
+│   ├── 📄 wallet.py                    # Wallet generation functions
+│   └── 📄 checker.py                   # Balance checking & blockchain interaction
+│
+├── 📄 config.json                      # Chain configurations & RPC endpoints
+├── 📄 .env                             # Environment variables (API keys) - NEVER COMMIT!
+├── 📄 .gitignore                       # Git ignore rules (protect sensitive files)
+│
+├── 📄 requirements.txt                 # Python dependencies
+├── 📄 README.md                        # Main documentation
+├── 📄 SETUP_GUIDE.md                   # Complete installation guide
+├── 📄 TELEGRAM_SETUP.md                # Telegram bot setup guide
+│
+├── 📄 hasil.json                       # OUTPUT: Wallets with balance (auto-generated)
+├── 📄 empty_wallets.json               # OUTPUT: Empty wallets (auto-generated)
+├── 📄 phrase_found.json                # OUTPUT: Phrase finder results (auto-generated)
+└── 📄 phrase_empty.json                # OUTPUT: Phrase finder empty (auto-generated)
+
+═══════════════════════════════════════════════════════════
+📊 FILE DETAILS
+═══════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────┐
+│ CORE FILES (Main Program)                              │
+└─────────────────────────────────────────────────────────┘
+
+✅ main.py (Created ✓)
+   - Main menu interface
+   - Mode selection (Random/Phrase Finder/Exit)
+   - Loads and calls sub-modules
+   - Entry point: python main.py
+
+✅ wallet_gen_random.py (Created ✓)
+   - Random 12-word phrase generation
+   - Balance scanning across multiple chains
+   - Telegram notifications
+   - Sub-menu: Quick/Medium/Large/Mega/Custom scans
+   - Statistics tracking
+
+✅ wallet_gen_phrase.py (Created ✓)
+   - Phrase pattern matching with wildcards (*)
+   - 1-3 word search modes
+   - Combination generator
+   - Recovery-focused features
+
+┌─────────────────────────────────────────────────────────┐
+│ UTILS PACKAGE (Modular Components)                     │
+└─────────────────────────────────────────────────────────┘
+
+✅ utils/__init__.py (Created ✓)
+   - Package initialization
+   - Exports all utility functions
+   - Availability flags for optional modules
+
+✅ utils/colors.py (Created ✓)
+   - ANSI color codes (RED, GREEN, CYAN, etc.)
+   - Color class with all terminal colors
+   - Color stripping utility
+
+✅ utils/ui.py (Created ✓)
+   - print_header() - ASCII art DIDINSKA logo
+   - print_box() - Styled content boxes
+   - print_loader() - Animated loading spinner
+   - print_progress_bar() - Progress tracking
+   - print_stats_box() - Statistics display
+   - clear_screen() - Terminal clearing
+
+✅ utils/telegram.py (Created ✓)
+   - send_message() - Send text messages
+   - send_photo() - Send images
+   - send_document() - Send files
+   - notify_wallet_found() - Wallet found alerts
+   - notify_phrase_found() - Phrase finder alerts
+   - notify_empty_wallets_batch() - Batch reports
+   - notify_scan_start() - Scan start notification
+   - notify_scan_complete() - Scan completion
+   - notify_error() - Error alerts
+   - test_connection() - Bot connection test
+
+✅ utils/wallet.py (Created ✓)
+   - load_wordlist() - Load BIP39 words
+   - validate_phrase() - Phrase validation
+   - generate_random_phrase() - Random phrase gen
+   - phrase_to_wallet() - Convert phrase to wallet
+   - generate_wallets_from_phrase_pattern() - Wildcard search
+   - derive_multiple_addresses() - HD derivation
+   - get_checksum_word() - Checksum calculation
+
+✅ utils/checker.py (Created ✓)
+   - check_debank_balance() - DeBank API integration
+   - check_native_balance() - RPC balance check
+   - check_transaction_count() - Nonce checking
+   - check_wallet_balance() - Multi-chain check
+   - build_web3_clients() - RPC connection builder
+   - get_token_balance() - ERC20 token balance
+   - quick_balance_check() - Fast screening
+
+┌─────────────────────────────────────────────────────────┐
+│ CONFIGURATION FILES                                     │
+└─────────────────────────────────────────────────────────┘
+
+✅ config.json (Created ✓)
+   Structure:
+   {
+     "concurrent_workers": 16,
+     "rpcs": {
+       "ethereum": {
+         "name": "Ethereum Mainnet",
+         "rpc_url": "https://...",
+         "native_symbol": "ETH",
+         "evm": true
+       },
+       ... (12 chains total)
+     }
+   }
+
+   Supported Chains:
+   - Ethereum
+   - BSC (Binance Smart Chain)
+   - Polygon
+   - Arbitrum
+   - Optimism
+   - Avalanche
+   - Fantom
+   - Base
+   - Blast
+   - Linea
+   - Scroll
+   - zkSync Era
+
+✅ .env (Created ✓ - Template)
+   Required Variables:
+   - DEBANK_ACCESS_KEY        (Optional - for balance API)
+   - ALCHEMY_API_KEY          (Recommended - for RPC)
+   - TELEGRAM_BOT_TOKEN       (Optional - for notifications)
+   - TELEGRAM_CHAT_ID         (Optional - for notifications)
+   - CONCURRENT_WORKERS       (Default: 16)
+   - DEBUG_MODE               (Default: False)
+   - CONFIG_FILE              (Default: config.json)
+   - OUTPUT_FILE              (Default: hasil.json)
+   - EMPTY_WALLETS_FILE       (Default: empty_wallets.json)
+
+✅ .gitignore (Created ✓)
+   Protects:
+   - .env (API keys)
+   - *.json (private keys)
+   - __pycache__/
+   - venv/
+   - *.log
+   - IDE files
+
+┌─────────────────────────────────────────────────────────┐
+│ DOCUMENTATION FILES                                     │
+└─────────────────────────────────────────────────────────┘
+
+✅ requirements.txt (Created ✓)
+   Dependencies:
+   - web3==6.11.1
+   - mnemonic==0.20
+   - eth-account==0.10.0
+   - python-dotenv==1.0.0
+   - requests==2.31.0
+
+✅ README.md (Created ✓)
+   Contents:
+   - Project overview
+   - Features list
+   - Installation guide
+   - Usage instructions
+   - Configuration details
+   - Telegram setup
+   - Legal disclaimer
+   - Troubleshooting
+   - FAQ
+
+✅ SETUP_GUIDE.md (Created ✓)
+   Step-by-step:
+   - Prerequisites check
+   - Installation process
+   - Configuration setup
+   - First run guide
+   - Troubleshooting tips
+
+✅ TELEGRAM_SETUP.md (Previously created)
+   Detailed guide:
+   - Creating Telegram bot
+   - Getting Chat ID
+   - Testing connection
+   - Notification examples
+
+┌─────────────────────────────────────────────────────────┐
+│ OUTPUT FILES (Auto-generated)                           │
+└─────────────────────────────────────────────────────────┘
+
+⚠️  hasil.json (Auto-generated at runtime)
+   Contains: Wallets with balance or transaction history
+   Format:
+   [
+     {
+       "address": "0x...",
+       "private_key": "...",
+       "phrase": "word1 word2 ...",
+       "balance_usd": 1234.56,
+       "coins": {"ETH": 0.5, "USDT": 1000},
+       "chains": ["ethereum", "polygon"],
+       "nonce": 15,
+       "found_at": "2025-10-18T10:30:45"
+     }
+   ]
+
+⚠️  empty_wallets.json (Auto-generated at runtime)
+   Contains: Wallets with no balance and no history
+   Format:
+   [
+     {
+       "address": "0x...",
+       "phrase": "word1 word2 ...",
+       "checked_at": "2025-10-18T10:30:45"
+     }
+   ]
+
+⚠️  phrase_found.json (Auto-generated at runtime)
+   Contains: Wallets found via phrase finder mode
+   Same structure as hasil.json
+
+⚠️  phrase_empty.json (Auto-generated at runtime)
+   Contains: Empty wallets from phrase finder
+   Same structure as empty_wallets.json
+
+═══════════════════════════════════════════════════════════
+🔧 INSTALLATION CHECKLIST
+═══════════════════════════════════════════════════════════
+
+Step 1: Create Project Structure
+  [ ] mkdir ~/didinska && cd ~/didinska
+  [ ] mkdir utils
+  [ ] Create all .py files
+  [ ] Create all .md files
+  [ ] Create config.json
+  [ ] Create .env
+  [ ] Create .gitignore
+  [ ] Create requirements.txt
+
+Step 2: Copy Code
+  [ ] Copy main.py code
+  [ ] Copy wallet_gen_random.py code
+  [ ] Copy wallet_gen_phrase.py code
+  [ ] Copy utils/__init__.py code
+  [ ] Copy utils/colors.py code
+  [ ] Copy utils/ui.py code
+  [ ] Copy utils/telegram.py code
+  [ ] Copy utils/wallet.py code
+  [ ] Copy utils/checker.py code
+
+Step 3: Setup Environment
+  [ ] python3 -m venv venv
+  [ ] source venv/bin/activate
+  [ ] pip install -r requirements.txt
+
+Step 4: Configure
+  [ ] Get DeBank API key (optional)
+  [ ] Get Alchemy API key (recommended)
+  [ ] Create Telegram bot (optional)
+  [ ] Edit .env with your keys
+  [ ] Verify config.json
+
+Step 5: Test
+  [ ] python3 -c "import mnemonic, web3; print('OK')"
+  [ ] python3 main.py
+  [ ] Run quick test scan (10 wallets)
+
+═══════════════════════════════════════════════════════════
+📊 FILE SIZE ESTIMATES
+═══════════════════════════════════════════════════════════
+
+main.py                    ~2 KB
+wallet_gen_random.py       ~15 KB
+wallet_gen_phrase.py       ~12 KB
+utils/__init__.py          ~2 KB
+utils/colors.py            ~1 KB
+utils/ui.py                ~4 KB
+utils/telegram.py          ~10 KB
+utils/wallet.py            ~8 KB
+utils/checker.py           ~10 KB
+config.json                ~2 KB
+.env                       ~1 KB
+requirements.txt           ~0.2 KB
+README.md                  ~15 KB
+SETUP_GUIDE.md             ~10 KB
+.gitignore                 ~3 KB
+
+TOTAL PROJECT SIZE: ~95 KB (before dependencies)
+
+═══════════════════════════════════════════════════════════
+🔒 SECURITY NOTES
+═══════════════════════════════════════════════════════════
+
+⚠️  NEVER COMMIT THESE FILES:
+  - .env (contains API keys)
+  - hasil.json (contains private keys!)
+  - empty_wallets.json (contains phrases)
+  - phrase_found.json (contains private keys!)
+  - Any *.json.backup files
+
+✅ ALWAYS VERIFY .gitignore INCLUDES:
+  - .env
+  - *.json (except config.json)
+  - __pycache__/
+  - venv/
+
+🔐 PROTECT YOUR KEYS:
+  - Use environment variables
+  - Never hardcode API keys
+  - Rotate keys regularly
+  - Use separate keys for dev/prod
+
+═══════════════════════════════════════════════════════════
+📝 QUICK START COMMANDS
+═══════════════════════════════════════════════════════════
+
+# Setup
+git clone <repo>
+cd didinska
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+nano .env  # Add your API keys
+
+# Run
+python3 main.py
+
+# Test Telegram
+python3 -c "from utils.telegram import test_connection; test_connection()"
+
+# Check Dependencies
+python3 -c "import mnemonic, web3, eth_account; print('✅ OK')"
+
+# Deactivate venv
+deactivate
+
+═══════════════════════════════════════════════════════════
+🎯 USAGE FLOW
+═══════════════════════════════════════════════════════════
+
+                    ┌─────────────┐
+                    │   main.py   │
+                    └──────┬──────┘
+                           │
+            ┌──────────────┼──────────────┐
+            │              │              │
+     ┌──────▼──────┐      │      ┌──────▼──────┐
+     │   Mode 1:   │      │      │   Mode 2:   │
+     │   Random    │      │      │   Phrase    │
+     │  Generator  │      │      │   Finder    │
+     └──────┬──────┘      │      └──────┬──────┘
+            │             │             │
+            │      ┌──────▼──────┐      │
+            │      │    Utils    │      │
+            │      │   Package   │      │
+            │      └─────────────┘      │
+            │             │             │
+            └─────────────┼─────────────┘
+                          │
+              ┌───────────┼───────────┐
+              │           │           │
+        ┌─────▼────┐ ┌───▼────┐ ┌───▼────┐
+        │ Telegram │ │ Wallet │ │ Check  │
+        │  Notify  │ │  Gen   │ │Balance │
+        └──────────┘ └────────┘ └────────┘
+                          │
+                    ┌─────▼─────┐
+                    │  Output   │
+                    │   Files   │
+                    └───────────┘
+
+═══════════════════════════════════════════════════════════
+✅ ALL FILES CREATED SUCCESSFULLY!
+═══════════════════════════════════════════════════════════
+
+Total Files: 18
+  - Core: 3 files
+  - Utils: 6 files
+  - Config: 3 files
+  - Docs: 4 files
+  - Other: 2 files
+
+Status: ✅ READY TO USE
+
+Next Steps:
+1. Follow SETUP_GUIDE.md for installation
+2. Configure .env with your API keys
+3. Run: python3 main.py
+4. Start with quick test scan
+
+═══════════════════════════════════════════════════════════
+
+Happy Hunting! 🔍 Made with ❤️ by DIDINSKA Team
